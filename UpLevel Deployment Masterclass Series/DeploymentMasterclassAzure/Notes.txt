@@ -1,0 +1,14 @@
+Context
+
+- train a model to predict housing prices
+- deploy trained model on Azure as an API endpoint
+
+Steps involved:
+- set resource group on Azure
+- train model on Azure ML
+- create script and YAML file
+- deploy trained model as an API endpoint
+- test deployed model
+
+
+Go to portal.azure.com

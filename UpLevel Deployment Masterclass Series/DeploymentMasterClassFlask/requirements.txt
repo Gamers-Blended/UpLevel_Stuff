@@ -1,0 +1,12 @@
+Flask==1.1.2
+gunicorn==20.1.0
+pandas==1.2.4
+requests==2.25.1
+joblib==1.0.1
+setuptools==57.0.0
+numpy==1.18.5
+scipy==1.6.1
+Cython==0.29.17
+matplotlib==3.2.2
+threadpoolctl==2.1.0
+scikit-learn==0.23.1

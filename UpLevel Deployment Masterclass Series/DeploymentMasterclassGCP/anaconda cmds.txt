@@ -1,0 +1,28 @@
+Video guide:
+https://www.youtube.com/watch?v=M3GanZ570X4
+
+To activate venv:
+cd deployment\Scripts
+activate.bat
+
+TO set env variable:
+cd ../..
+set GOOGLE_APPLICATION_CREDENTIALS="<name of JSON downloaded from GCP>"
+
+To login:
+gcloud auth login
+
+To create S3 bucket:
+gsutil mb -l asia-southeast1 gs://<unique_bucket_name>
+
+asia-southeast1 is SG's server
+
+To create a model resource:
+gcloud ai-platform models create <model_resource_name> -- region=asia-southeast1
+
+To copy model to bucket:
+gsutil cp model.pkl gs://<unique_bucket_name>
+
+To make API call:
+gcloud ai-platform predict --model <model_resource_name> --version <model_version_on_gcp> --json-request <json_input>
+--region asia-southeast1
