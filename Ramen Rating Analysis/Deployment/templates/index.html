@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Ramen Rating Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+ <div class="login">
+	<h1>Predict Ramen Rating</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post">
+
+      <div>
+      <h2>Select flavour:</h2>
+      <label>
+      Spicy<input type="checkbox" value="1" name="isSpicy">
+      </label>
+      <br>
+
+      <label>
+      Contains Chicken<input type="checkbox" value="1" name="hasChicken">
+      </label>
+      <br>
+
+      <label>
+      Contains Beef<input type="checkbox" value="1" name="hasBeef">
+      </label>
+      <br>
+
+      <label>
+      Contains Seafood<input type="checkbox" value="1" name="hasSeafood">
+      </label>
+
+      </div>
+      <br>
+
+      <div>
+      <h2>Which brand is it from?</h2>
+      <!-- 1 to 5 -->
+      <label>
+      Acecook<input type="radio" value="Acecook" name="brand" required>
+      </label>
+
+      <label>
+      Indomie<input type="radio" value="Indomie" name="brand">
+      </label>
+
+      <label>
+      Itsuki<input type="radio" value="Itsuki" name="brand">
+      </label>
+
+      <label>
+      JML<input type="radio" value="JML" name="brand">
+      </label>
+
+      <label>
+      KOKA<input type="radio" value="KOKA" name="brand">
+      </label>
+      <br>
+
+      <!-- 6 to 10 -->
+      <label>
+      Lucky Me!<input type="radio" value="Lucky Me!" name="brand">
+      </label>
+
+      <label>
+      MAMA<input type="radio" value="MAMA" name="brand">
+      </label>
+
+      <label>
+      Maggi<input type="radio" value="Maggi" name="brand">
+      </label>
+
+      <label>
+      Mama<input type="radio" value="Mama" name="brand">
+      </label>
+
+      <label>
+      Mamee<input type="radio" value="Mamee" name="brand">
+      </label>
+      <br>
+
+      <!-- 11 to 15 -->
+      <label>
+      Maruchan<input type="radio" value="Maruchan" name="brand">
+      </label>
+
+      <label>
+      Master Kong<input type="radio" value="Master Kong" name="brand">
+      </label>
+
+      <label>
+      MyKuali<input type="radio" value="MyKuali" name="brand">
+      </label>
+
+      <label>
+      Myojo<input type="radio" value="Myojo" name="brand">
+      </label>
+
+      <label>
+      Nissin<input type="radio" value="Nissin" name="brand">
+      </label>
+      <br>
+
+      <!-- 16 to 20 -->
+      <label>
+      Nongshim<input type="radio" value="Nongshim" name="brand">
+      </label>
+
+      <label>
+      Other<input type="radio" value="Other" name="brand">
+      </label>
+
+      <label>
+      Ottogi<input type="radio" value="Ottogi" name="brand">
+      </label>
+
+      <label>
+      Paldo<input type="radio" value="Paldo" name="brand">
+      </label>
+
+      <label>
+      Samyang Foods<input type="radio" value="Samyang Foods" name="brand">
+      </label>
+      <br>
+
+      <!-- 21 to 25 -->
+      <label>
+      Sapporo Ichiban<input type="radio" value="Sapporo Ichiban" name="brand">
+      </label>
+
+      <label>
+      Sau Tao<input type="radio" value="Sau Tao" name="brand">
+      </label>
+
+      <label>
+      Ve Wong<input type="radio" value="Ve Wong" name="brand">
+      </label>
+
+      <label>
+      Vedan<input type="radio" value="Vedan" name="brand">
+      </label>
+
+      <label>
+      Vifon<input type="radio" value="Vifon" name="brand">
+      </label>
+      <br>
+
+      <!-- 26 to 30 -->
+      <label>
+      Vina Acecook<input type="radio" value="Vina Acecook" name="brand">
+      </label>
+
+      <label>
+      Wai Wai<input type="radio" value="Wai Wai" name="brand">
+      </label>
+
+      <label>
+      Wei Lih<input type="radio" value="Wei Lih" name="brand">
+      </label>
+
+      <label>
+      Wu-Mu<input type="radio" value="Wu-Mu" name="brand">
+      </label>
+
+      <label>
+      Yum Yum<input type="radio" value="Yum Yum" name="brand">
+      </label>
+
+      </div>
+      <br>
+
+      <div>
+      <h2>How is it being served as?</h2>
+
+      <label>
+      Cup<input type="radio" value="Cup" name="served" required>
+      </label>
+      <br>
+
+      <label>
+      Other<input type="radio" value="Other" name="served">
+      </label>
+      <br>
+
+      <label>
+      Pack<input type="radio" value="Pack" name="served">
+      </label>
+      <br>
+      
+      <label>
+      Tray<input type="radio" value="Tray" name="served">
+      </label>
+
+      </div>
+      <br>
+
+      <div>
+      <h2>What is its country of origin?</h2>
+
+      <label>
+      Hong Kong<input type="radio" value="Hong Kong" name="country" required>
+      </label>
+      <br>
+
+      <label>
+      Indonesia<input type="radio" value="Indonesia" name="country">
+      </label>
+      <br>
+
+      <label>
+      Japan<input type="radio" value="Japan" name="country">
+      </label>
+      <br>
+      
+      <label>
+      Malaysia<input type="radio" value="Malaysia" name="country">
+      </label>
+      <br>
+
+      <label>
+      Other<input type="radio" value="Other" name="country">
+      </label>
+      <br>
+
+      <label>
+      Singapore<input type="radio" value="Singapore" name="country">
+      </label>
+      <br>
+
+      <label>
+      South Korea<input type="radio" value="South Korea" name="country">
+      </label>
+      <br>
+      
+      <label>
+      Taiwan<input type="radio" value="Taiwan" name="country">
+      </label>
+      <br>
+
+      <label>
+      Thailand<input type="radio" value="Thailand" name="country">
+      </label>
+      <br>
+      
+      <label>
+      United States<input type="radio" value="United States" name="country">
+      </label>
+
+      </div>
+      <br>
+
+      <div>
+      <label for="model"></label>
+      <h2>Select prediction model</h2>
+      
+      <select name="model" id="model">
+        <option value="logr">Logistic Regression</option>
+        <option value="dtclf">DecisionTree Classifier</option>
+        <option value="rfclf">RandomForest Classifier</option>
+      </select>
+      
+    </div>
+
+    <br>
+      <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+
+   <div class="prediction">
+    <p>Selected inputs:</p>
+    <p>Selected flavour(s): {{ selected_flavour }}</p>
+    <p>Selected brand: {{ selected_brand }}</p>
+    <p>Selected serving type: {{ selected_serving }}</p>
+    <p>Selected country of origin: {{ selected_country }}</p>
+    
+   </div>
+
+   <div class="prediction">
+    {{ prediction_text }}
+    
+   </div>
+   
+ </div>
+
+</body>
+</html>
